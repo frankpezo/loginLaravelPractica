@@ -4,10 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
-class LoginMiddleware
+class IndexMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,10 @@ class LoginMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        //Verificar si el usuario está autenticado 
-        if(Auth::check()){
-            return redirect()->route('index');
+
+        //Verificar si el usuario está autenticado
+        if(!Auth::check()){
+            return redirect()->route('auth.login');
         }
         return $next($request);
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\IndexMiddleware;
 use App\Http\Middleware\LoginMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -13,7 +14,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-        'authProtection'=> LoginMiddleware::class
+        'authProtection'=> LoginMiddleware::class, 
+        'indexProtection'=> IndexMiddleware::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
