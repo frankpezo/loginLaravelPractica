@@ -19,6 +19,8 @@ class LoginMiddleware
         //Verificar si el usuario está autenticado 
         if(Auth::check()){
             return redirect()->route('index');
+        }else{
+            return redirect()->route('auth.login');
         }
         return $next($request);
     }

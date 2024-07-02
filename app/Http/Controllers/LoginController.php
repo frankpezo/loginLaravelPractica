@@ -12,8 +12,10 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     
+  
    public function index(){
-    return view('index');
+    $user = Auth::user();
+    return view('index', compact('user'));
    }
 
     public function login(){
@@ -31,11 +33,16 @@ class LoginController extends Controller
           }
 
           return redirect()->route('auth.login')->with('danger', 'Datos incorrectos');
-            
-           
-
-
+             
     } 
+
+    public function logout(Request $request){
+           Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return redirect()->route('auth.login');
+    }
     
 
 
