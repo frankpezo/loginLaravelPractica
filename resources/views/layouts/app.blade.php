@@ -19,4 +19,17 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </body>
 
+
+
+    @if (isset($showModal) && $showModal)
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var myModal = new bootstrap.Modal(document.getElementById('registerModal'), {
+                    keyboard: false
+                });
+                myModal.show();
+            });
+        </script>
+    @endif
+
 </html>
