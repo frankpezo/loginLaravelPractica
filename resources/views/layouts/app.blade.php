@@ -9,16 +9,11 @@
     <title>@yield('title')</title>
 </head>
 
-<body">
+<body>
+    {{-- Para el mensaje --}}
+    @include('layouts.partials.messages')
+
     @yield('content')
-
-
-
-    <!-- Scripts Bootstrap-->
-    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    </body>
-
 
 
     @if (isset($showModal) && $showModal)
@@ -31,5 +26,10 @@
             });
         </script>
     @endif
+
+    <!-- Scripts Bootstrap-->
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
 
 </html>
