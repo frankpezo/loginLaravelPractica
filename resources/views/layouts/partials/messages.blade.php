@@ -6,7 +6,7 @@
                 icon: "success",
                 title: "{{ $message }}",
                 showConfirmButton: false,
-                timer: 1700
+                timer: 1900
             });
         });
     </script>
@@ -18,7 +18,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             Swal.fire({
                 position: "top-center",
-                icon: "success",
+                icon: "error",
                 title: "{{ $message }}",
                 showConfirmButton: false,
                 timer: 1900

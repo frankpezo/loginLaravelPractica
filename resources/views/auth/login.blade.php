@@ -21,25 +21,31 @@
                                         d="M7.009 12.139a7.6 7.6 0 0 1-1.804-1.352A7.6 7.6 0 0 1 3.794 8.86c-1.102.992-1.965 5.054-1.839 5.18.125.126 3.936-.896 5.054-1.902Z" />
                                 </svg>
                             </div>
-                            <form action="">
+                            <form action="{{ route('auth.loginAuth') }}" method="POST">
+                                @csrf
                                 <div class="mb-3">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control my-3 p-y3"" name="email" id="email"
-                                        placeholder="example@example.com">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control my-3 p-y3"" name="email"
+                                        placeholder="example@example.com" value="{{ old('email') }}">
                                 </div>
                                 @error('email')
-                                    <p class="alert alert-danger">Ingrese un email válido</p>
+                                    <p class="alert
+                                        alert-danger">Ingrese un email
+                                        válido</p>
                                 @enderror
 
                                 <div class="mb-3">
-                                    <label for="password">Contraseña</label>
-                                    <input type="password" class="form-control my-3 p-y3"" name="password" id="password">
+                                    <label for="password" class="form-label">Contraseña</label>
+                                    <input type="password" class="form-control my-3 p-y3"" name="password"
+                                        value="{{ old('password') }}">
                                 </div>
                                 @error('password')
-                                    <p class="alert alert-danger">Ingrese una contraseña válido</p>
+                                    <p class="alert
+                                        alert-danger">Ingrese una
+                                        contraseña válido</p>
                                 @enderror
 
-                                <button type="button" class="btn btn-dark form-control my-3 p-y3">Iniciar sesión</button>
+                                <button type="submit" class="btn btn-dark form-control my-3 p-y3">Ingresar</button>
                                 <a href="{{ route('auth.register') }}"
                                     class="btn btn-outline-primary form-control">Registrarse</a>
 
