@@ -4,10 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class LoginMiddleware
+class NoCacheMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,11 +15,12 @@ class LoginMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        //Verificar si el usuario está autenticado 
-        if(Auth::check()){
-            return redirect()->route('index');
-        }
-        
-        return $next($request);
+        $response = $next($request);
+
+        $response->headers->set('Cache-Control', 'nocache, no-store, max-age=0, must-revalidate');
+        $response->headers->set('Pragma', 'no-cache');
+        $response->headers->set('Expires', 'Fri, 01 May 2024 00:00:00 GMT');
+    
+        return $response;
     }
 }
