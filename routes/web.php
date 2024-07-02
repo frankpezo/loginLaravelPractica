@@ -7,8 +7,17 @@ use App\Http\Controllers\RegisterController;
 
 Route::get('/', [LoginController::class,'index'])->name('index');
 
-Route::get('/login', [LoginController::class,'login'])->name('auth.login');
-Route::post('/loginAuth', [LoginController::class,'loginAuth'])->name('auth.loginAuth');
+//Para proteger la rutas y el usuario no pueda regresar una vez loguado
+Route::middleware(['authProtection'])->group(function(){
 
-Route::get('/register', [RegisterController::class,'register'])->name('auth.register');
-Route::post('/create', [RegisterController::class,'create'])->name('auth.create');
+    Route::get('/login', [LoginController::class,'login'])->name('auth.login');
+    Route::post('/loginAuth', [LoginController::class,'loginAuth'])->name('auth.loginAuth');
+    Route::post('/create', [RegisterController::class,'create'])->name('auth.create');
+    Route::get('/register', [RegisterController::class,'register'])->name('auth.register');
+    Route::get('/register', [RegisterController::class,'register'])->name('auth.register');
+
+});
+
+
+
+
