@@ -22,7 +22,9 @@
                             d="M7.009 12.139a7.6 7.6 0 0 1-1.804-1.352A7.6 7.6 0 0 1 3.794 8.86c-1.102.992-1.965 5.054-1.839 5.18.125.126 3.936-.896 5.054-1.902Z" />
                     </svg>
                 </div>
-                <a href="{{ route('auth.login') }}" class="btn-close" aria-label="Close"></a>
+
+                <button class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+
             </div>
             <div class="modal-body">
                 <div class="card border-0 shadow">
@@ -32,37 +34,37 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="name" class="form-label">Nombre</label>
-                                <input type="text" class="form-control my-3 p-y3" name="name" id="name"
-                                    value="{{ old('name') }}">
+                                <input type="text" class="form-control my-3 p-y3" name="nameRegister"
+                                    id="nameRegister" value="{{ old('nameRegister') }}">
                             </div>
-                            @error('name')
+                            @error('nameRegister')
                                 <p class="alert alert-danger">Ingrese su nombre</p>
                             @enderror
 
                             <div class="mb-3">
                                 <label for="lastname" class="form-label">Apellido</label>
-                                <input type="text" class="form-control my-3 p-y3" name="lastname"
-                                    value="{{ old('lastname') }}">
+                                <input type="text" class="form-control my-3 p-y3" name="lastnameRegister"
+                                    value="{{ old('lastnameRegister') }}">
                             </div>
-                            @error('lastname')
+                            @error('lastnameRegister')
                                 <p class="alert alert-danger">Ingrese su apellido</p>
                             @enderror
 
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control my-3 p-y3" name="email"
-                                    placeholder="example@example.com" value="{{ old('email') }}">
+                                <input type="email" class="form-control my-3 p-y3" name="emailRegister"
+                                    placeholder="example@example.com" value="{{ old('emailRegister') }}">
                             </div>
-                            @error('email')
+                            @error('emailRegister')
                                 <p class="alert alert-danger">Ingrese un email</p>
                             @enderror
 
                             <div class="mb-3">
                                 <label for="password" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control my-3 p-y3" name="password"
-                                    value="{{ old('password') }}">
+                                <input type="password" class="form-control my-3 p-y3" name="passwordRegister"
+                                    value="{{ old('passwordRegister') }}">
                             </div>
-                            @error('password')
+                            @error('passwordRegister')
                                 <p class="alert alert-danger">Ingrese una contraseña</p>
                             @enderror
 
@@ -77,3 +79,19 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    //Modal Recuperar contraseña
+    document.addEventListener('DOMContentLoaded', function() {
+        // Abre el modal automáticamente solo si hay errores de validación para campos específicos del formulario de reseteo de contraseña
+        @if (
+            $errors->has('nameRegister') ||
+                $errors->has('lastnameRegister') ||
+                $errors->has('emailRegister') ||
+                $errors->has('passwordRegister'))
+            var myModal = new bootstrap.Modal(document.getElementById('registerModal'));
+            myModal.show();
+        @endif
+    });
+</script>

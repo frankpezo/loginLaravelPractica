@@ -11,7 +11,7 @@
                     <h4>Recuperar contraseña</h4>
 
                 </div>
-                <a href="{{ route('auth.login') }}" class="btn-close" aria-label="Close"></a>
+                <button class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
             </div>
             <div class="modal-body">
                 <form action="{{ route('auth.storePass') }}" method="POST" enctype="multipart/form-data">
@@ -20,7 +20,7 @@
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" name="emailR" id="email" class="form-control"
-                            placeholder="example@example.com">
+                            placeholder="example@example.com" value="{{ old('emailR') }}">
                     </div>
                     @error('emailR')
                         <p class="alert alert-danger">Ingrese un correo</p>
@@ -28,10 +28,12 @@
 
                     <div class="mb-3">
                         <label for="password" class="label-control"> Nueva contraseña</label>
-                        <input type="password" id="password" class="form-control" name="passwordR">
+                        <input type="password" id="password" class="form-control" name="passwordR"
+                            value="{{ old('passwordR') }}">
                     </div>
                     @error('passwordR')
-                        <p class="alert alert-danger">Ingrese una contraseña</p>
+                        <p class="alert
+                            alert-danger">Ingrese una contraseña</p>
                     @enderror
 
                     <button type="submit" class="btn btn-dark form-control">Enviar</button>
@@ -40,3 +42,16 @@
         </div>
     </div>
 </div>
+
+
+
+<script>
+    //Modal Recuperar contraseña
+    document.addEventListener('DOMContentLoaded', function() {
+        // Abre el modal automáticamente solo si hay errores de validación para campos específicos del formulario de reseteo de contraseña
+        @if ($errors->has('emailR') || $errors->has('passwordR'))
+            var myModal = new bootstrap.Modal(document.getElementById('resetPassModal'));
+            myModal.show();
+        @endif
+    });
+</script>

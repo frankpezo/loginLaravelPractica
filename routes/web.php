@@ -14,15 +14,14 @@ Route::middleware(['authProtection', 'noCache'])->group(function(){
     Route::get('/login', [LoginController::class,'login'])->name('auth.login');
     Route::post('/loginAuth', [LoginController::class,'loginAuth'])->name('auth.loginAuth');
     Route::post('/create', [RegisterController::class,'create'])->name('auth.create');
-    Route::get('/register', [RegisterController::class,'register'])->name('auth.register');
-    
-
+ 
 }); 
 
   //Cerrar sesión 
  Route::post('/logout', [LoginController::class,'logout'])->name('auth.logout')->middleware('auth');
 
  //Recuperar contraseñas
-  Route::get('/resetPass', [ResetPasswordController::class,'resetPass'])->name('auth.resetPass');
-  Route::post('/storePass', [ResetPasswordController::class,'storePass'])->name('auth.storePass');
+ Route::post('/storePass', [ResetPasswordController::class,'storePass'])->name('auth.storePass');
+
+
 
