@@ -31,7 +31,7 @@
                                 @error('email')
                                     <p class="alert
                                         alert-danger">Ingrese un email
-                                        válido</p>
+                                    </p>
                                 @enderror
 
                                 <div class="mb-3">
@@ -42,12 +42,18 @@
                                 @error('password')
                                     <p class="alert
                                         alert-danger">Ingrese una
-                                        contraseña válido</p>
+                                        contraseña (min 5)</p>
                                 @enderror
 
+                                <div class="mb-3 d-flex justify-content-end">
+                                    <a href="#" class="text-decoration-none fw-normal text-muted"
+                                        data-bs-toggle="modal" data-bs-target="#resetPassModal">Olvidé
+                                        contraseña</a>
+                                </div>
+
                                 <button type="submit" class="btn btn-dark form-control my-3 p-y3">Ingresar</button>
-                                <a href="{{ route('auth.register') }}"
-                                    class="btn btn-outline-primary form-control">Registrarse</a>
+                                <a href="#" class="btn btn-outline-primary form-control" data-bs-toggle="modal"
+                                    data-bs-target="#registerModal">Registrarse</a>
 
                             </form>
 
@@ -59,8 +65,8 @@
 
     </section>
 
-    <section>
 
-    </section>
+    @include('auth.modal.resetpass')
+    @include('auth.modal.register')
 
 @endSection

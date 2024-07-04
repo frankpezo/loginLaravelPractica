@@ -16,16 +16,6 @@
     @yield('content')
 
 
-    @if (isset($showModal) && $showModal)
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                var myModal = new bootstrap.Modal(document.getElementById('registerModal'), {
-                    keyboard: false
-                });
-                myModal.show();
-            });
-        </script>
-    @endif
 
     <!-- Scripts Bootstrap-->
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>

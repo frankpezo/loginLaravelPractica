@@ -11,19 +11,21 @@ class RegisterController extends Controller
 {
     
 
-    public function register()
-    {
-        return view('auth.modal.register', ['showModal'=>true]);
-    }
-      
     public function create(RegisterRequest $request): RedirectResponse
     {
+         // Verificar si el correo electrónico ya existe
+         $existingUser = User::where('email', $request->emailRegister)->first();
+
+         if ($existingUser) {
+             // Redirigir con un mensaje de error si el correo ya existe
+             return back()->with('danger', 'El correo electrónico ya está registrado.');
+         }
         
          User::create([
-            'name'=>$request->name,
-            'lastname'=>$request->lastname,
-            'email'=>$request->email,
-            'password'=>bcrypt($request->password)
+            'name'=>$request->nameRegister,
+            'lastname'=>$request->lastnameRegister,
+            'email'=>$request->emailRegister,
+            'password'=>bcrypt($request->passwordRegister)
          ]);
 
          return redirect()->route('auth.login')->with('success', 'Se registró el usuario correctamente');

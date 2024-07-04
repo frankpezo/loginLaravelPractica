@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ResetPasswordController;
 
 Route::get('/', [LoginController::class,'index'])->middleware(['indexProtection', 'noCache'])->name('index');
 
@@ -13,8 +14,11 @@ Route::middleware(['authProtection', 'noCache'])->group(function(){
     Route::get('/login', [LoginController::class,'login'])->name('auth.login');
     Route::post('/loginAuth', [LoginController::class,'loginAuth'])->name('auth.loginAuth');
     Route::post('/create', [RegisterController::class,'create'])->name('auth.create');
-    Route::get('/register', [RegisterController::class,'register'])->name('auth.register');
-    Route::get('/register', [RegisterController::class,'register'])->name('auth.register');
+ 
+ //Recuperar contraseñas
+ Route::post('/storePass', [ResetPasswordController::class,'storePass'])->name('auth.storePass');
+
+
 
 }); 
 
