@@ -56,9 +56,12 @@
                                     placeholder="example@example.com" value="{{ old('emailRegister') }}">
                             </div>
                             @error('emailRegister')
-                                <p class="alert alert-danger">Ingrese un email</p>
+                                @if ($message == 'The email register has already been taken.')
+                                    <p class="alert alert-danger">El email ya existe</p>
+                                @else
+                                    <p class="alert alert-danger">Ingrese un email</p>
+                                @endif
                             @enderror
-
                             <div class="mb-3">
                                 <label for="password" class="form-label">Contraseña</label>
                                 <input type="password" class="form-control my-3 p-y3" name="passwordRegister"
